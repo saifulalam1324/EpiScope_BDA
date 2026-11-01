@@ -1,0 +1,4 @@
+district_name,error
+Joypurhat,429 Client Error: Too Many Requests for url: https://archive-api.open-meteo.com/v1/archive?latitude=25.06150589500004&longitude=89.09186611894762&start_date=2021-01-01&end_date=2025-12-31&daily=temperature_2m_mean%2Cprecipitation_sum&timezone=Asia%2FDhaka
+Panchagarh,429 Client Error: Too Many Requests for url: https://archive-api.open-meteo.com/v1/archive?latitude=26.320974079000052&longitude=88.54746623439436&start_date=2021-01-01&end_date=2025-12-31&daily=temperature_2m_mean%2Cprecipitation_sum&timezone=Asia%2FDhaka
+Patuakhali,429 Client Error: Too Many Requests for url: https://archive-api.open-meteo.com/v1/archive?latitude=22.259253907500067&longitude=90.45995830401355&start_date=2021-01-01&end_date=2025-12-31&daily=temperature_2m_mean%2Cprecipitation_sum&timezone=Asia%2FDhaka

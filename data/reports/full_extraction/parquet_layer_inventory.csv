@@ -1,0 +1,7 @@
+﻿dataset,source,format,rows,columns,status,csv_output
+bronze_encounters,E:\episcope\data\lake\bronze\encounters,Parquet,25000,16,EXPORTED,E:\episcope\data\reports\full_extraction\bronze_encounters
+silver_encounters,E:\episcope\data\lake\silver\encounters,Parquet,24148,16,EXPORTED,E:\episcope\data\reports\full_extraction\silver_encounters
+silver_encounters_named,E:\episcope\data\lake\silver\encounters_named,Parquet,24148,17,EXPORTED,E:\episcope\data\reports\full_extraction\silver_encounters_named
+gold_data_quality,E:\episcope\data\lake\gold\data_quality,Parquet,,,ERROR,
+gold_weekly_district_disease,E:\episcope\data\lake\gold\weekly_district_disease,Parquet,,,ERROR,
+quarantine_encounters,E:\episcope\data\quarantine\encounters,Parquet,,,ERROR,

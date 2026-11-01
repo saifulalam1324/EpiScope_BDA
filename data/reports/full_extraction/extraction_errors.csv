@@ -1,0 +1,4 @@
+﻿dataset,error
+gold_data_quality,"[UNSUPPORTED_DATA_TYPE_FOR_DATASOURCE] The CSV datasource doesn't support the column `bronze_batch_ids` of the type ""ARRAY<STRING>""."
+gold_weekly_district_disease,"[UNSUPPORTED_DATA_TYPE_FOR_DATASOURCE] The CSV datasource doesn't support the column `bronze_batch_ids` of the type ""ARRAY<STRING>""."
+quarantine_encounters,"[UNSUPPORTED_DATA_TYPE_FOR_DATASOURCE] The CSV datasource doesn't support the column `reasons` of the type ""ARRAY<STRING>""."

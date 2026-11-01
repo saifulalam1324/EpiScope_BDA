@@ -1,0 +1,5 @@
+dataset_size,successful_repetitions,median_execution_time_seconds,median_throughput_records_per_second,median_output_rows,median_parquet_size_mb,input_partitions,status
+10000,3,1.415,7068.82,10000,0.036,8,SUCCESS
+100000,3,1.708,58549.35,50830,0.189,8,SUCCESS
+500000,3,2.333,214326.02,83840,0.373,8,SUCCESS
+1000000,3,3.649,274077.69,83840,0.419,8,SUCCESS

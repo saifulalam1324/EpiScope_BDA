@@ -1,0 +1,10 @@
+{
+  "batch_id": "5771888d-68c0-4ecc-abfb-aff3cdfcdc03",
+  "source": "data\\raw\\generated\\encounters.csv",
+  "output": "data\\lake\\bronze\\encounters",
+  "rows_read": 25000,
+  "rows_written": 25000,
+  "ingestion_time_utc": "2026-10-30T09:26:08.085855+00:00",
+  "format": "parquet",
+  "status": "success"
+}
