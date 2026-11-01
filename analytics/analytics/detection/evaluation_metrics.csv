@@ -1,0 +1,3 @@
+detector,ground_truth_events,detected_events,event_sensitivity,total_alert_weeks,true_alert_weeks,false_alert_weeks,alert_precision,median_detection_delay_days,mean_false_alerts_per_district_year
+Rolling_Z_Score,30,13,0.43333333333333335,626,14,612,0.022364217252396165,10.0,1.7337110481586402
+EARS_C2,30,10,0.3333333333333333,316,11,305,0.03481012658227848,11.5,0.8640226628895185
