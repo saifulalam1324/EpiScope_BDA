@@ -1,0 +1,228 @@
+{
+    "project": "EpiScope",
+    "experiment": "Repeated Spark scalability benchmark",
+    "generated_at_utc": "2026-10-31T00:24:32.991882+00:00",
+    "python_version": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "results": [
+        {
+            "dataset_size": 10000,
+            "repetition": 1,
+            "input_rows": 10000,
+            "output_rows": 10000,
+            "input_partitions": 8,
+            "output_partitions": 1,
+            "execution_time_seconds": 3.92,
+            "throughput_records_per_second": 2551.16,
+            "parquet_size_bytes": 37341,
+            "parquet_size_mb": 0.036,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 10000,
+            "repetition": 2,
+            "input_rows": 10000,
+            "output_rows": 10000,
+            "input_partitions": 8,
+            "output_partitions": 1,
+            "execution_time_seconds": 1.415,
+            "throughput_records_per_second": 7068.82,
+            "parquet_size_bytes": 37341,
+            "parquet_size_mb": 0.036,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 10000,
+            "repetition": 3,
+            "input_rows": 10000,
+            "output_rows": 10000,
+            "input_partitions": 8,
+            "output_partitions": 1,
+            "execution_time_seconds": 1.322,
+            "throughput_records_per_second": 7566.71,
+            "parquet_size_bytes": 37341,
+            "parquet_size_mb": 0.036,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 100000,
+            "repetition": 1,
+            "input_rows": 100000,
+            "output_rows": 50830,
+            "input_partitions": 8,
+            "output_partitions": 1,
+            "execution_time_seconds": 2.033,
+            "throughput_records_per_second": 49191.77,
+            "parquet_size_bytes": 198225,
+            "parquet_size_mb": 0.189,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 100000,
+            "repetition": 2,
+            "input_rows": 100000,
+            "output_rows": 50830,
+            "input_partitions": 8,
+            "output_partitions": 1,
+            "execution_time_seconds": 1.708,
+            "throughput_records_per_second": 58549.35,
+            "parquet_size_bytes": 198225,
+            "parquet_size_mb": 0.189,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 100000,
+            "repetition": 3,
+            "input_rows": 100000,
+            "output_rows": 50830,
+            "input_partitions": 8,
+            "output_partitions": 1,
+            "execution_time_seconds": 1.526,
+            "throughput_records_per_second": 65528.45,
+            "parquet_size_bytes": 198225,
+            "parquet_size_mb": 0.189,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 500000,
+            "repetition": 1,
+            "input_rows": 500000,
+            "output_rows": 83840,
+            "input_partitions": 8,
+            "output_partitions": 4,
+            "execution_time_seconds": 2.671,
+            "throughput_records_per_second": 187167.97,
+            "parquet_size_bytes": 390890,
+            "parquet_size_mb": 0.373,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 500000,
+            "repetition": 2,
+            "input_rows": 500000,
+            "output_rows": 83840,
+            "input_partitions": 8,
+            "output_partitions": 4,
+            "execution_time_seconds": 2.279,
+            "throughput_records_per_second": 219398.93,
+            "parquet_size_bytes": 390890,
+            "parquet_size_mb": 0.373,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 500000,
+            "repetition": 3,
+            "input_rows": 500000,
+            "output_rows": 83840,
+            "input_partitions": 8,
+            "output_partitions": 4,
+            "execution_time_seconds": 2.333,
+            "throughput_records_per_second": 214326.02,
+            "parquet_size_bytes": 390890,
+            "parquet_size_mb": 0.373,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 1000000,
+            "repetition": 1,
+            "input_rows": 1000000,
+            "output_rows": 83840,
+            "input_partitions": 8,
+            "output_partitions": 8,
+            "execution_time_seconds": 3.978,
+            "throughput_records_per_second": 251378.05,
+            "parquet_size_bytes": 439161,
+            "parquet_size_mb": 0.419,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 1000000,
+            "repetition": 2,
+            "input_rows": 1000000,
+            "output_rows": 83840,
+            "input_partitions": 8,
+            "output_partitions": 8,
+            "execution_time_seconds": 3.362,
+            "throughput_records_per_second": 297484.01,
+            "parquet_size_bytes": 439161,
+            "parquet_size_mb": 0.419,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 1000000,
+            "repetition": 3,
+            "input_rows": 1000000,
+            "output_rows": 83840,
+            "input_partitions": 8,
+            "output_partitions": 8,
+            "execution_time_seconds": 3.649,
+            "throughput_records_per_second": 274077.69,
+            "parquet_size_bytes": 439161,
+            "parquet_size_mb": 0.419,
+            "status": "SUCCESS"
+        }
+    ],
+    "summary": [
+        {
+            "dataset_size": 10000,
+            "successful_repetitions": 3,
+            "median_execution_time_seconds": 1.415,
+            "median_throughput_records_per_second": 7068.82,
+            "median_output_rows": 10000,
+            "median_parquet_size_mb": 0.036,
+            "input_partitions": 8,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 100000,
+            "successful_repetitions": 3,
+            "median_execution_time_seconds": 1.708,
+            "median_throughput_records_per_second": 58549.35,
+            "median_output_rows": 50830,
+            "median_parquet_size_mb": 0.189,
+            "input_partitions": 8,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 500000,
+            "successful_repetitions": 3,
+            "median_execution_time_seconds": 2.333,
+            "median_throughput_records_per_second": 214326.02,
+            "median_output_rows": 83840,
+            "median_parquet_size_mb": 0.373,
+            "input_partitions": 8,
+            "status": "SUCCESS"
+        },
+        {
+            "dataset_size": 1000000,
+            "successful_repetitions": 3,
+            "median_execution_time_seconds": 3.649,
+            "median_throughput_records_per_second": 274077.69,
+            "median_output_rows": 83840,
+            "median_parquet_size_mb": 0.419,
+            "input_partitions": 8,
+            "status": "SUCCESS"
+        }
+    ],
+    "methodology": {
+        "dataset_type": "Deterministic synthetic encounters",
+        "repetitions_per_size": 3,
+        "summary_statistic": "Median",
+        "workload": [
+            "Synthetic record generation",
+            "Column transformations",
+            "Weekly aggregation",
+            "Distinct patient counting",
+            "Parquet output",
+            "Output verification"
+        ],
+        "notes": [
+            "Each dataset size is executed repeatedly.",
+            "Median timing and throughput reduce sensitivity to one unusual run.",
+            "Execution time includes Spark workload and Parquet writing.",
+            "Output verification count is performed after the timed write.",
+            "The experiment uses a local Spark environment.",
+            "Results are not production-cluster performance measurements."
+        ]
+    }
+}

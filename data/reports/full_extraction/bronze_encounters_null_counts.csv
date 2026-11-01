@@ -1,0 +1,17 @@
+﻿dataset,column,null_count
+bronze_encounters,encounter_id,0
+bronze_encounters,patient_id,0
+bronze_encounters,facility_id,0
+bronze_encounters,district_id,0
+bronze_encounters,onset_date,0
+bronze_encounters,report_date,0
+bronze_encounters,age_years,0
+bronze_encounters,sex,0
+bronze_encounters,icd10_code,0
+bronze_encounters,lab_confirmed,0
+bronze_encounters,admitted,0
+bronze_encounters,outcome,0
+bronze_encounters,ingestion_time_utc,0
+bronze_encounters,source_file,0
+bronze_encounters,file_checksum_sha256,0
+bronze_encounters,batch_id,0

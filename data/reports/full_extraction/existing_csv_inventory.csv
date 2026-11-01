@@ -1,0 +1,41 @@
+﻿file,rows,columns,column_names,status
+analytics\calendar\outbreak_by_disease.csv,5,7,disease | alert_events | affected_districts | total_reported_cases | high_alerts | first_alert | last_alert,READ
+analytics\calendar\outbreak_by_district.csv,64,8,district_id | district_name | alert_events | affected_diseases | total_reported_cases | high_alerts | first_alert | last_alert,READ
+analytics\calendar\outbreak_calendar.csv,630,12,week_start | district_id | disease | district_name | cases | detector_count | detectors | maximum_z_score | week_end | severity | calendar_month | calendar_year,READ
+analytics\calendar\outbreak_monthly_summary.csv,60,7,calendar_month | alert_events | affected_districts | affected_diseases | total_reported_cases | high_alerts | moderate_alerts,READ
+analytics\calendar\outbreak_weekly_summary.csv,238,8,week_start | alert_events | affected_districts | affected_diseases | total_reported_cases | high_alerts | moderate_alerts | elevated_alerts,READ
+analytics\calendar\preparedness_calendar.csv,2097,12,division_name | disease | seasonal_week | average_weekly_cases | total_observed_cases | observations | peak_week | peak_average_cases | preparation_start_week | preparation_lead_weeks | recommended_action | calendar_method,READ
+analytics\detection\alert_evaluation.csv,942,8,detector | alert_id | district_id | disease | week_start | matched_outbreak_id | is_true_alert | year,READ
+analytics\detection\ears_alerts.csv,83840,15,week_start | district_id | district_name | disease | cases | admissions | lab_confirmed_cases | bronze_batch_ids | year | baseline_mean | baseline_std | alert_threshold | z_score | alert | detector,READ
+analytics\detection\ears_c2_alerts.csv,83840,17,week_start | district_id | district_name | disease | cases | admissions | lab_confirmed_cases | bronze_batch_ids | processing_time_utc | year | baseline_mean | baseline_std | effective_std | alert_threshold | z_score | alert | detector,READ
+analytics\detection\evaluation_metrics.csv,2,10,detector | ground_truth_events | detected_events | event_sensitivity | total_alert_weeks | true_alert_weeks | false_alert_weeks | alert_precision | median_detection_delay_days | mean_false_alerts_per_district_year,READ
+analytics\detection\evaluation_results.csv,60,9,detector | outbreak_id | district_id | disease | start_date | end_date | detected | first_alert_week | delay_days,READ
+analytics\detection\false_alerts_by_district_year.csv,706,4,district_id | year | false_alerts | detector,READ
+analytics\detection\threshold_tradeoff.csv,12,7,detector | z_score_threshold | event_sensitivity | alert_precision | false_alert_weeks | median_detection_delay_days | mean_false_alerts_per_district_year,READ
+analytics\forecast\backtest_by_disease.csv,10,7,disease | model_name | observations | mae | rmse | mape_percent | wape_percent,READ
+analytics\forecast\backtest_by_district.csv,128,8,district_id | district_name | model_name | observations | mae | rmse | mape_percent | wape_percent,READ
+analytics\forecast\backtest_details.csv,1256,13,district_id | district_name | disease | week_start | forecast_horizon_weeks | actual_cases | predicted_cases | persistence_prediction | model_name | training_rows | temperature_mean_c | precipitation_mm | weather_method,READ
+analytics\forecast\backtest_summary.csv,12,7,forecast_horizon_weeks | model_name | observations | mae | rmse | mape_percent | wape_percent,READ
+analytics\forecast\forecasts.csv,1280,12,district_id | district_name | disease | week_start | forecast_horizon_weeks | predicted_cases | persistence_baseline | model_name | training_rows | weather_method | temperature_mean_c | precipitation_mm,READ
+analytics\forecast\resource_demand.csv,1280,9,district_id | district_name | disease | forecast_week | forecast_cases | beds_needed | saline_needed | ors_needed | scenario,READ
+analytics\forecast\resource_demand_by_district.csv,669,8,district_id | district_name | forecast_week | forecast_cases | saline_needed | ors_needed | beds_needed | scenario,READ
+analytics\forecast\seir_simulation.csv,57920,10,district_id | district_name | disease | day | susceptible | exposed | infectious | recovered | new_exposures_per_day | population,READ
+analytics\forecast\seir_summary.csv,320,13,district_id | district_name | disease | scenario_population | initial_infectious | beta | incubation_period_days | infectious_period_days | basic_reproduction_number | peak_infectious | peak_day | final_recovered | model_type,READ
+analytics\optimise\allocation_results.csv,669,10,district_id | district_name | forecast_week | beds_needed | allocated_beds | unmet_beds | coverage_rate | minimum_weekly_coverage | weekly_capacity | allocation_method,READ
+analytics\optimise\equity_by_district.csv,64,10,district_id | beds_needed | allocated_beds | unmet_beds | weeks_present | district_name | coverage_rate | demand_share | allocation_share | district_count_complete,READ
+analytics\optimise\equity_by_week.csv,32,13,forecast_week | districts_present | districts_expected | district_coverage_complete | total_demand | total_allocated | total_unmet | overall_coverage_rate | demand_gini | allocation_gini | mean_district_coverage | minimum_district_coverage | maximum_district_coverage,READ
+analytics\optimise\equity_summary.csv,12,2,metric | value,READ
+analytics\optimise\lorenz_curve.csv,130,4,metric | district_rank | cumulative_district_share | cumulative_value_share,READ
+analytics\optimise\scenario_allocation_results.csv,2676,14,district_id | district_name | forecast_week | forecast_cases | saline_needed | ors_needed | beds_needed | scenario | allocated_beds | unmet_beds | coverage_rate | minimum_coverage | weekly_capacity | scenario_capacity,READ
+analytics\optimise\scenario_summary.csv,128,10,capacity | forecast_week | districts_present | total_demand | allocated_beds | unmet_beds | coverage_rate | minimum_district_coverage | demand_gini | allocation_gini,READ
+data\raw\generated\encounters.csv,25000,12,encounter_id | patient_id | facility_id | district_id | onset_date | report_date | age_years | sex | icd10_code | lab_confirmed | admitted | outcome,READ
+data\raw\generated\facilities.csv,600,5,facility_id | district_id | facility_type | beds | icu_beds,READ
+data\raw\generated\ground_truth_outbreaks.csv,30,5,outbreak_id | district_id | disease | start_date | end_date,READ
+data\reference\district_division_mapping.csv,64,3,district_id | district_name | division_name,READ
+data\reference\district_mapping.csv,64,2,district_id | district_name,READ
+data\weather\weather_daily.csv,116864,8,district_id | district_name | district_iso | latitude | longitude | date | temperature_mean_c | precipitation_mm,READ
+data\weather\weather_failures.csv,3,2,district_name | error,READ
+data\weather\weather_weekly.csv,16768,6,district_id | district_name | week_start | temperature_mean_c | precipitation_mm | daily_observations,READ
+data\reports\gold_disease_totals\part-00000-99df6f3f-5666-45e5-9206-48e5ff66169a-c000.csv,5,2,disease_group | Cases,READ
+data\reports\scalability\scalability_results.csv,12,11,dataset_size | repetition | input_rows | output_rows | input_partitions | output_partitions | execution_time_seconds | throughput_records_per_second | parquet_size_bytes | parquet_size_mb | status,READ
+data\reports\scalability\scalability_summary.csv,4,8,dataset_size | successful_repetitions | median_execution_time_seconds | median_throughput_records_per_second | median_output_rows | median_parquet_size_mb | input_partitions | status,READ

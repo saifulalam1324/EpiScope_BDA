@@ -1,0 +1,10 @@
+{
+  "processing_time_utc": "2026-11-01T05:41:14.575731+00:00",
+  "input_rows": 24148,
+  "output_rows": 24148,
+  "unmatched_rows": 0,
+  "unmatched_district_ids": 0,
+  "mapping_rows": 64,
+  "broadcast_join": true,
+  "status": "success"
+}

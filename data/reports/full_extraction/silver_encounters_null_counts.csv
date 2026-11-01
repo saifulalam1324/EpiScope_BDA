@@ -1,0 +1,17 @@
+﻿dataset,column,null_count
+silver_encounters,encounter_id,0
+silver_encounters,facility_id,0
+silver_encounters,district_id,0
+silver_encounters,onset_date,0
+silver_encounters,report_date,0
+silver_encounters,sex,0
+silver_encounters,icd10_code,0
+silver_encounters,lab_confirmed,0
+silver_encounters,admitted,0
+silver_encounters,outcome,0
+silver_encounters,ingestion_time_utc,0
+silver_encounters,source_file,0
+silver_encounters,file_checksum_sha256,0
+silver_encounters,batch_id,0
+silver_encounters,patient_id_hash,0
+silver_encounters,age_band,0

@@ -1,0 +1,87 @@
+{
+  "processing_time_utc": "2026-11-01T05:41:01.503550+00:00",
+  "input_rows": 25000,
+  "valid_rows": 24148,
+  "duplicate_rows_quarantined": 487,
+  "invalid_unique_rows_quarantined": 365,
+  "cross_facility_duplicate_rows_quarantined": 0,
+  "quarantined_rows": 852,
+  "bronze_batch_ids": [
+    "78bb791d-c55d-4fa2-99c9-e53a837c9ac9"
+  ],
+  "rules": {
+    "missing_encounter_id": {
+      "failed_rows": 0,
+      "pass_rate": 1.0
+    },
+    "missing_patient_id": {
+      "failed_rows": 0,
+      "pass_rate": 1.0
+    },
+    "invalid_district_id": {
+      "failed_rows": 0,
+      "pass_rate": 1.0
+    },
+    "orphan_facility": {
+      "failed_rows": 126,
+      "pass_rate": 0.995
+    },
+    "invalid_date": {
+      "failed_rows": 0,
+      "pass_rate": 1.0
+    },
+    "report_before_onset": {
+      "failed_rows": 0,
+      "pass_rate": 1.0
+    },
+    "invalid_age": {
+      "failed_rows": 243,
+      "pass_rate": 0.9903
+    },
+    "invalid_lab_flag": {
+      "failed_rows": 0,
+      "pass_rate": 1.0
+    },
+    "invalid_admission_flag": {
+      "failed_rows": 0,
+      "pass_rate": 1.0
+    },
+    "invalid_sex": {
+      "failed_rows": 0,
+      "pass_rate": 1.0
+    },
+    "invalid_icd10": {
+      "failed_rows": 0,
+      "pass_rate": 1.0
+    },
+    "missing_outcome": {
+      "failed_rows": 0,
+      "pass_rate": 1.0
+    },
+    "missing_batch_id": {
+      "failed_rows": 0,
+      "pass_rate": 1.0
+    },
+    "duplicate_encounter_id": {
+      "failed_rows": 487,
+      "pass_rate": 0.9805
+    },
+    "cross_facility_duplicate_patient": {
+      "failed_rows": 0,
+      "pass_rate": 1.0
+    }
+  },
+  "dq4": {
+    "matching_method": "same_hashed_patient_district_onset_icd10",
+    "different_facility_required": true,
+    "maximum_report_date_difference_days": 7,
+    "earliest_encounter_retained": true,
+    "candidate_encounters_quarantined_for_review": true
+  },
+  "privacy": {
+    "patient_id_hashed": true,
+    "exact_patient_id_removed": true,
+    "age_years_replaced_with_age_band": true,
+    "salt_loaded_from_environment": true
+  }
+}

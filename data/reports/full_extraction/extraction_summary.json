@@ -1,0 +1,8 @@
+{
+  "project": "EpiScope",
+  "parquet_datasets_found": 3,
+  "parquet_datasets_missing": 0,
+  "parquet_datasets_with_errors": 3,
+  "existing_csv_files_scanned": 40,
+  "output_directory": "E:\\episcope\\data\\reports\\full_extraction"
+}

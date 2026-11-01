@@ -1,0 +1,12 @@
+{
+  "batch_id": "78bb791d-c55d-4fa2-99c9-e53a837c9ac9",
+  "source": "data\\raw\\generated\\encounters.csv",
+  "output": "data\\lake\\bronze\\encounters",
+  "source_file": "encounters.csv",
+  "file_checksum_sha256": "beb379d1688e0fa8aa917c2447f46814d0494a3b90274596559525be15f4b801",
+  "rows_read": 25000,
+  "rows_written": 25000,
+  "ingestion_time_utc": "2026-10-30T20:26:13.485501+00:00",
+  "format": "parquet",
+  "status": "success"
+}

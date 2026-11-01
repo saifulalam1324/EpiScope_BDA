@@ -1,0 +1,8 @@
+{
+  "source": "data\\raw\\generated\\encounters.csv",
+  "output": "data\\lake\\bronze\\encounters",
+  "rows_read": 25000,
+  "ingestion_time_utc": "2026-10-17T21:30:44.264869+00:00",
+  "format": "parquet",
+  "status": "success"
+}
