@@ -1,69 +1,193 @@
-EpiScope — Public Health Surveillance and Outbreak Detection
-1. Project Overview
-EpiScope is a public health surveillance and analytics platform designed to process disease surveillance data, monitor disease trends, detect potential outbreaks, and support healthcare resource planning across districts in Bangladesh.
-The system implements a data engineering pipeline using Bronze, Silver, and Gold layers, statistical outbreak detection algorithms, forecasting models, and an interactive dashboard for visualizing public health indicators.
-2. Project Objectives
-Build a reliable and reproducible public health data processing pipeline.
-Clean, validate, and enrich disease surveillance records.
-Aggregate disease cases by district, disease, and week.
-Detect potential outbreaks using Rolling Z-score and EARS-C2 algorithms.
-Evaluate outbreak detection performance using sensitivity, precision, and detection delay.
-Forecast future disease cases and estimate healthcare resource demand.
-Visualize disease trends, alerts, and district-level statistics through a dashboard.
-3. System Architecture
-<p align="center">
-  <img src="docs/System_arcitecture.png" width="800" alt="Project Dashboard">
-</p>
-4. Technologies Used
-Technology
-Purpose
-Python
-Data processing and analytics
-Pandas and NumPy
-Data cleaning and statistical calculations
-PySpark
-Scalable data processing and aggregation
-Parquet
-Storage of structured pipeline data
-FastAPI
-Backend API and data delivery
-D3.js
-Interactive charts and district maps
-HTML, CSS and JavaScript
-Dashboard interface
-Scikit-learn
-Machine learning and forecasting
-PuLP
-Resource allocation optimization
-Git and GitHub
-Version control and collaboration
+# 🏥 EpiScope
+### Public Health Surveillance, Outbreak Detection & Resource Planning
 
-5. Project Structure
-episcope/
+<p align="center">
+  <strong>Turning public health data into actionable surveillance insights.</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.11-blue?logo=python" alt="Python 3.11">
+  <img src="https://img.shields.io/badge/Apache-Spark-orange?logo=apachespark" alt="Apache Spark">
+  <img src="https://img.shields.io/badge/FastAPI-Backend-009688?logo=fastapi" alt="FastAPI">
+  <img src="https://img.shields.io/badge/D3.js-Visualization-F9A03C?logo=d3.js" alt="D3.js">
+  <img src="https://img.shields.io/badge/Project-Academic-purple" alt="Academic project">
+</p>
+
+---
+
+## 📌 Table of Contents
+
+- [About the Project](#-about-the-project)
+- [Project Objectives](#-project-objectives)
+- [System Architecture](#-system-architecture)
+- [Technologies Used](#-technologies-used)
+- [Project Structure](#-project-structure)
+- [Key Features](#-key-features)
+- [Data Engineering Pipeline](#-data-engineering-pipeline)
+- [Analytics Modules](#-analytics-modules)
+- [Dashboard](#-dashboard)
+- [Installation and Execution](#-installation-and-execution)
+- [Team Members](#-team-members-and-contributions)
+- [Data Quality and Reliability](#-data-quality-and-reliability)
+- [Limitations and Important Notes](#-limitations-and-important-notes)
+- [Presentation](#-video-presentation)
+- [License](#-license)
+
+---
+
+## 🌍 About the Project
+
+**EpiScope** is a public-health surveillance and analytics prototype designed to process disease surveillance data, monitor disease trends, identify potential outbreak signals, and explore healthcare resource planning across districts in Bangladesh.
+
+The project combines a layered Big Data Engineering pipeline with statistical outbreak detection, forecasting, resource-demand estimation, and an interactive dashboard.
+
+The system transforms synthetic public-health data into structured analytical outputs that can be explored through charts, maps, alerts, and planning scenarios.
+
+> ⚠️ EpiScope is an academic prototype using synthetic data and illustrative planning assumptions. It is not a live disease surveillance service or a clinical decision-making system.
+
+---
+
+## 🎯 Project Objectives
+
+| Objective | Description |
+|---|---|
+| Data engineering | Build a reproducible Bronze-Silver-Gold processing pipeline. |
+| Data quality | Clean, validate, enrich, and quarantine invalid records. |
+| Data aggregation | Aggregate cases by district, disease, and week. |
+| Outbreak detection | Implement Rolling Z-score and EARS-C2 methods. |
+| Detection evaluation | Evaluate sensitivity, precision, false alerts, and detection delay. |
+| Forecasting | Estimate future disease activity using forecasting models. |
+| Resource planning | Convert forecast cases into illustrative resource requirements. |
+| Visualization | Present trends, alerts, and district-level statistics through a dashboard. |
+
+---
+
+## 🏗️ System Architecture
+
+The architecture follows an end-to-end data-to-decision workflow.
+
+**[View System Architecture Diagram](docs/System_arcitecture.png)**
+
+<p align="center">
+  <a href="docs/System_arcitecture.png">
+    <img src="docs/System_arcitecture.png" alt="EpiScope System Architecture" width="900">
+  </a>
+</p>
+
+### Architecture workflow
+
+```mermaid
+flowchart TD
+    A["Synthetic Public Health Data"] --> B["Bronze Layer"]
+    B --> C["Silver Layer"]
+    C --> D["Gold Layer"]
+
+    D --> E["Outbreak Detection"]
+    D --> F["Disease Forecasting"]
+    D --> G["SEIR Simulation"]
+
+    E --> H["Detection Evaluation"]
+    F --> I["Resource Demand Estimation"]
+    G --> I
+
+    I --> J["Resource Allocation & Equity"]
+    J --> K["Serving Layer"]
+    H --> K
+    F --> K
+
+    K --> L["FastAPI Backend"]
+    L --> M["D3.js Dashboard"]
+    M --> N["Analytical Decision Support"]
+```
+
+### Architecture layers
+
+<details>
+<summary>🥉 Bronze Layer — Raw Data Ingestion</summary>
+
+- Ingests generated encounter records.
+- Stores raw records in Parquet format.
+- Maintains ingestion metadata and batch information.
+- Provides the initial data lake layer.
+
+</details>
+
+<details>
+<summary>🥈 Silver Layer — Cleaning and Validation</summary>
+
+- Validates required fields and data types.
+- Handles duplicate records.
+- Enriches district information.
+- Separates invalid records into quarantine.
+- Applies configured privacy transformations.
+
+</details>
+
+<details>
+<summary>🥇 Gold Layer — Analytical Aggregation</summary>
+
+- Aggregates records by district, disease, and week.
+- Produces structured analytical datasets.
+- Supports downstream detection, forecasting, and reporting.
+
+</details>
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| Python | Data processing and analytics |
+| Pandas & NumPy | Data cleaning and statistical calculations |
+| PySpark | Distributed data processing and aggregation |
+| Parquet | Structured data storage |
+| FastAPI | Backend API and data delivery |
+| D3.js | Interactive charts and district maps |
+| HTML, CSS, JavaScript | Dashboard interface |
+| Scikit-learn | Machine learning and forecasting |
+| SciPy | Epidemiological simulation |
+| PuLP | Resource allocation optimization |
+| Git & GitHub | Version control and collaboration |
+
+---
+
+## 📁 Project Structure
+
+```text
+EpiScope/
+│
 ├── analytics/
 │   ├── calendar/
 │   │   ├── outbreak_calendar.py
 │   │   └── preparedness_calendar.py
+│   │
 │   ├── detection/
 │   │   ├── ears_alerts.py
 │   │   ├── ears_c2.py
 │   │   └── evaluate_detection.py
+│   │
 │   ├── forecast/
 │   │   ├── forecast_cases.py
 │   │   ├── resource_demand.py
 │   │   ├── seir_model.py
 │   │   └── evaluate_forecasts.py
+│   │
 │   ├── optimise/
 │   │   ├── allocation.py
 │   │   ├── equity_analysis.py
 │   │   └── scenario_analysis.py
+│   │
 │   └── scalability/
+│
 ├── api/
 │   └── main.py
+│
 ├── dashboard/
 │   ├── app.js
 │   ├── index.html
 │   └── d3.v7.min.js
+│
 ├── data/
 │   ├── raw/
 │   ├── lake/
@@ -74,92 +198,370 @@ episcope/
 │   ├── reference/
 │   ├── reports/
 │   └── weather/
+│
+├── pipeline/
+│   ├── bronze/
+│   ├── silver/
+│   └── gold/
+│
+├── serving/
 ├── requirements.txt
 └── README.md
-Note: The structure above highlights the main project components. Actual files and directories may vary by version.
-6. Installation and Execution Instructions
-Prerequisites
-Python 3.11 (or the version supported by the project)
-Git
-A Windows, Linux, or macOS environment
-Required Python dependencies
-Step 1: Clone the repository
-git clone <YOUR_GITHUB_REPOSITORY_URL>
-cd episcope
-Step 2: Create a virtual environment
-Windows PowerShell:
+```
+
+<sub>Note: This is a representative structure. Directory names and files may differ between project versions. Confirm the actual repository before publishing.</sub>
+
+---
+
+## ✨ Key Features
+
+<details open>
+<summary>📊 Data Engineering</summary>
+
+- Layered Bronze, Silver, and Gold architecture.
+- Data validation and cleaning.
+- Duplicate handling.
+- Invalid-record quarantine.
+- District-name enrichment.
+- Weekly district-disease aggregation.
+
+</details>
+
+<details>
+<summary>🚨 Outbreak Detection</summary>
+
+- Rolling Z-score detection.
+- EARS-C2 detection.
+- Configurable thresholds.
+- Statistical alert generation.
+- Detection performance evaluation.
+
+</details>
+
+<details>
+<summary>📈 Forecasting and Simulation</summary>
+
+- District-wise disease forecasting.
+- Random Forest and persistence fallback.
+- Forecast backtesting.
+- Exploratory SEIR simulation.
+- Resource-demand estimation.
+
+</details>
+
+<details>
+<summary>⚖️ Resource Planning</summary>
+
+- Weekly resource allocation.
+- Capacity-constrained optimization.
+- District-level coverage analysis.
+- Equity summaries.
+- Scenario comparison.
+- Preparedness calendar.
+
+</details>
+
+<details>
+<summary>🗺️ Interactive Dashboard</summary>
+
+- Public-health summary indicators.
+- Disease trend charts.
+- District-level map.
+- Outbreak alert tables.
+- Forecast visualization.
+- Resource-demand summaries.
+- Interactive what-if scenario controls.
+
+</details>
+
+---
+
+## 🔄 Data Engineering Pipeline
+
+```mermaid
+flowchart LR
+    A["Generated CSV"] --> B["Bronze Ingestion"]
+    B --> C["Bronze Parquet"]
+    C --> D["Silver Cleaning"]
+    D --> E{"Valid Record?"}
+    E -->|Yes| F["Silver Dataset"]
+    E -->|No| G["Quarantine"]
+    F --> H["District Enrichment"]
+    H --> I["Gold Aggregation"]
+    I --> J["Weekly District-Disease Data"]
+```
+
+### Pipeline outputs
+
+| Layer | Main output |
+|---|---|
+| Bronze | Raw Parquet data |
+| Silver | Cleaned and validated records |
+| Quarantine | Invalid or rejected records |
+| Gold | Weekly district-disease aggregates |
+| Reports | Ingestion and data-quality reports |
+
+---
+
+## 🧠 Analytics Modules
+
+| Module | Main purpose | Example output |
+|---|---|---|
+| `ears_alerts.py` | Rolling Z-score detection | `ears_alerts.csv` |
+| `ears_c2.py` | EARS-C2 detection | `ears_c2_alerts.csv` |
+| `evaluate_detection.py` | Evaluate detection performance | `evaluation_metrics.csv` |
+| `forecast_cases.py` | Forecast future disease cases | `forecasts.csv` |
+| `evaluate_forecasts.py` | Evaluate forecast accuracy | Forecast evaluation reports |
+| `seir_model.py` | Exploratory epidemiological simulation | SEIR outputs |
+| `resource_demand.py` | Estimate illustrative resource needs | `resource_demand.csv` |
+| `allocation.py` | Optimize resource allocation | `allocation_results.csv` |
+| `equity_analysis.py` | Examine allocation equity | Equity reports |
+| `scenario_analysis.py` | Compare capacity scenarios | `scenario_summary.csv` |
+
+### Outbreak detection evaluation
+
+The detection evaluation module examines:
+
+- Sensitivity
+- Alert precision
+- False-alert weeks
+- Detection delay
+- Threshold trade-offs
+
+> Outbreak alerts are statistical screening signals. They do not establish that an outbreak has been confirmed.
+
+### Resource-demand assumptions
+
+Resource requirements are estimated using configurable assumptions.
+
+| Resource | Illustrative calculation |
+|---|---|
+| Beds | Forecast cases × configured bed fraction |
+| IV saline | Forecast cases × configured saline units per case |
+| ORS | Forecast cases × configured ORS units per case |
+
+The estimates are planning scenarios, not clinical recommendations or actual hospital consumption figures.
+
+---
+
+## 🖥️ Dashboard
+
+The EpiScope dashboard connects analytical outputs to an interactive web interface.
+
+**Dashboard features include:**
+
+- Summary indicators
+- Weekly disease trends
+- Disease comparisons
+- District maps
+- Outbreak alerts
+- Forecast visualization
+- Resource-demand planning
+- Allocation and equity analysis
+- Preparedness calendar
+- What-if scenario planning
+
+### Dashboard preview
+
+<p align="center">
+  <img src="docs/dashboard.png" alt="EpiScope Dashboard Preview" width="900">
+</p>
+
+<sub>Place a real dashboard screenshot at `docs/dashboard.png`, or remove this preview section if no screenshot is available.</sub>
+
+---
+
+## ⚙️ Installation and Execution
+
+<details>
+<summary><strong>Step 1 — Prerequisites</strong></summary>
+
+Install:
+
+- Python 3.11
+- Git
+- A supported Windows, Linux, or macOS environment
+
+</details>
+
+<details>
+<summary><strong>Step 2 — Clone the repository</strong></summary>
+
+Replace the repository URL with your actual GitHub URL.
+
+```bash
+git clone https://github.com/YOUR_USERNAME/EpiScope_BDA.git
+cd EpiScope_BDA
+```
+
+</details>
+
+<details>
+<summary><strong>Step 3 — Create and activate a virtual environment</strong></summary>
+
+**Windows PowerShell**
+
+```powershell
 python -m venv .venv311
 .\.venv311\Scripts\Activate.ps1
-Step 3: Install dependencies
+```
+
+**Linux / macOS**
+
+```bash
+python3 -m venv .venv311
+source .venv311/bin/activate
+```
+
+</details>
+
+<details>
+<summary><strong>Step 4 — Install dependencies</strong></summary>
+
+```bash
 python -m pip install --upgrade pip
 pip install -r requirements.txt
-Step 4: Run outbreak detection
+```
+
+</details>
+
+<details>
+<summary><strong>Step 5 — Run outbreak detection</strong></summary>
+
+```bash
 python .\analytics\detection\ears_alerts.py
 python .\analytics\detection\ears_c2.py
-Step 5: Evaluate outbreak detection
+```
+
+Evaluate the generated alerts:
+
+```bash
 python .\analytics\detection\evaluate_detection.py
-The evaluation outputs are saved under analytics/detection/.
-Step 6: Run forecasting and resource planning
-Run the forecasting script first:
+```
+
+</details>
+
+<details>
+<summary><strong>Step 6 — Run forecasting and resource-demand estimation</strong></summary>
+
+Run forecasting first:
+
+```bash
 python .\analytics\forecast\forecast_cases.py
-After verifying that the forecast output exists, run resource-demand estimation:
+```
+
+Then estimate resource demand:
+
+```bash
 python .\analytics\forecast\resource_demand.py
-Additional allocation and equity analysis scripts can be executed after their required input files have been generated.
-Step 7: Start the API server
-From the project root, use the following command if api/main.py exposes an ASGI application named app:
-uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
-Open the API documentation at:
-http://127.0.0.1:8000/docs
-Step 8: Open the dashboard
-If the dashboard is served by the FastAPI application, open:
-http://127.0.0.1:8000/
-Otherwise, follow the dashboard's configured static-file serving instructions.
-7. Team Members and Contributions
-The EpiScope project was developed by three team members, each responsible for a major component of the system.
-Team Member
-Role
-Contribution
-Mahitun Nesa Mahi
-Data Engineer
-Data collection, Spark pipeline, Bronze/Silver/Gold layers, data cleaning, quality, and pipeline performance
-Riya Biswas
-Analytics Engineer
-Outbreak detection, evaluation, forecasting, resource-demand estimation, and allocation optimisation
-Md Saiful Alam
-Visualization Engineer
-API integration, D3.js dashboard, charts, maps, usability testing, and project demonstration
+```
 
+Run additional allocation and equity modules after their required input files are available:
 
-8. Key Features
-Layered Bronze, Silver, and Gold data architecture.
-Data validation, deduplication, and quarantine handling.
-District-level disease aggregation.
-Rolling Z-score and EARS-C2 outbreak detection.
-Detection performance evaluation.
-Disease forecasting and illustrative resource-demand estimation.
-District-level maps, trend charts, alerts, and summary indicators.
-9. Data Quality and Reliability
-EpiScope uses data validation and quarantine mechanisms to separate invalid records from accepted records. Aggregated Gold datasets provide structured inputs for analytics and dashboard reporting.
-Pipeline execution reports and detector evaluation outputs support reproducibility and quality assessment. Data quality percentages should be calculated from verified input, accepted, and quarantined record counts.
-10. Important Notes
-Outbreak alerts are statistical signals and should not be interpreted as confirmed outbreaks.
-Forecasts depend on data availability, model assumptions, and validation results.
-Resource-demand estimates are planning estimates, not clinical recommendations.
-Sensitive or restricted health data should not be published in the repository.
-Large datasets, virtual environments, secrets, and generated files should be excluded from Git when appropriate.
-11. Video Presentation Link
-12. Video Chapter Timestamp
+```bash
+python .\analytics\optimise\allocation.py
+python .\analytics\optimise\equity_analysis.py
+python .\analytics\optimise\scenario_analysis.py
+```
 
-EpiScope — Turning public health data into actionable surveillance insights.
+</details>
 
-Before pushing to GitHub
-Check these three things:
-Replace <YOUR_GITHUB_REPOSITORY_URL> with your actual repository URL.
-Add the real team members' names and contributions.
-Verify that api/main.py, requirements.txt, and the dashboard startup instructions match your current project.
-Then save the document as README.md in E:\episcope and run:
-git add README.md
-git commit -m "Add project README documentation"
-git push
-This will publish the README with your next Git push.
+<details>
+<summary><strong>Step 7 — Start the API server</strong></summary>
 
+From the project root:
+
+```bash
+python -m uvicorn api.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+Open the API documentation:
+
+**http://127.0.0.1:8000/docs**
+
+</details>
+
+<details>
+<summary><strong>Step 8 — Open the dashboard</strong></summary>
+
+If the FastAPI application serves the dashboard:
+
+**http://127.0.0.1:8000/**
+
+Otherwise, use the static dashboard instructions configured in the repository.
+
+</details>
+
+---
+
+## 👥 Team Members and Contributions
+
+| Team member | Role | Contribution |
+|---|---|---|
+| Mahitun Nesa Mahi | Data Engineer | Data generation, Spark pipeline, Bronze/Silver/Gold layers, data cleaning, validation, and quality reporting |
+| Riya Biswas | Analytics Engineer | Outbreak detection, evaluation, forecasting, resource-demand estimation, and allocation optimization |
+| Md Saiful Alam | Visualization Engineer | API integration, D3.js dashboard, charts, maps, usability testing, and project demonstration |
+
+---
+
+## 🧪 Data Quality and Reliability
+
+EpiScope uses data-quality mechanisms to improve the reliability of analytical datasets.
+
+- Required-field validation.
+- Duplicate detection.
+- Invalid-record quarantine.
+- District mapping and enrichment.
+- Pipeline execution reports.
+- Detection and forecast evaluation outputs.
+
+Data-quality percentages should be calculated from verified input, accepted, and quarantined record counts.
+
+---
+
+## ⚠️ Limitations and Important Notes
+
+1. **Synthetic data:** Results demonstrate the workflow and should not be interpreted as actual public-health conditions in Bangladesh.
+2. **Outbreak alerts:** Statistical alerts are screening signals, not confirmed outbreaks.
+3. **Forecast uncertainty:** Prediction intervals are unavailable when they are not supplied by the forecasting source.
+4. **Resource estimates:** Bed, saline, and ORS requirements depend on illustrative assumptions.
+5. **SEIR simulation:** Results depend on simplified model assumptions and should not be treated as calibrated epidemiological forecasts.
+6. **Privacy:** Do not publish sensitive or restricted health records, credentials, environment files, or secrets.
+7. **Reproducibility:** Generated datasets, model outputs, and execution reports should be documented appropriately.
+
+---
+
+## 🎥 Video Presentation
+
+**Project demonstration:** Add your final presentation video link here.
+
+[▶ Watch the EpiScope Presentation](YOUR_VIDEO_LINK_HERE)
+
+### Video Chapters
+
+| Timestamp | Topic |
+|---|---|
+| `00:00` | Project introduction |
+| `00:00` | Problem statement and objectives |
+| `00:00` | System architecture |
+| `00:00` | Data engineering pipeline |
+| `00:00` | Outbreak detection and evaluation |
+| `00:00` | Forecasting and resource planning |
+| `00:00` | Dashboard demonstration |
+| `00:00` | Conclusion |
+
+<sub>Replace the placeholder timestamps with the actual video chapter times.</sub>
+
+---
+
+## 📜 License
+
+Add the license selected for this project, such as MIT, if the team has agreed to publish the repository under that license.
+
+---
+
+<p align="center">
+  <strong>EpiScope — Turning public health data into actionable surveillance insights.</strong>
+  <br>
+  Made as an academic Big Data Analytics project.
+</p>
