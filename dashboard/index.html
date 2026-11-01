@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#102a43" />
+    <meta
+      name="description"
+      content="EpiScope synthetic disease surveillance and public health resource planning dashboard"
+    />
+    <title>EpiScope | Disease Surveillance Dashboard</title>
+
+    <link rel="stylesheet" href="static/styles.css" />
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="static/app.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#mainContent">Skip to dashboard</a>
+
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon" aria-hidden="true">E</div>
+        <div>
+          <p class="eyebrow">PUBLIC HEALTH ANALYTICS</p>
+          <h1>EpiScope</h1>
+          <p class="subtitle">Disease surveillance and resource planning</p>
+        </div>
+      </div>
+
+      <div class="header-status">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="apiStatus" role="status" aria-live="polite">
+          Connecting to API…
+        </span>
+      </div>
+    </header>
+
+    <main id="mainContent" class="container">
+      <section class="notice" aria-label="Data notice">
+        <strong>Demonstration dashboard:</strong>
+        displayed epidemiological values are synthetic unless explicitly
+        identified otherwise. Small-count suppression and access control must be
+        applied by the server before data is returned. This dashboard is not for
+        clinical decision-making.
+      </section>
+
+      <!-- GLOBAL FILTERS -->
+      <section class="panel filters" aria-label="Dashboard filters">
+        <div class="filter-field">
+          <label for="districtFilter">District</label>
+          <select id="districtFilter">
+            <option value="ALL">All districts</option>
+          </select>
+        </div>
+
+        <div class="filter-field">
+          <label for="diseaseFilter">Disease</label>
+          <select id="diseaseFilter">
+            <option value="ALL">All diseases</option>
+          </select>
+        </div>
+
+        <div class="filter-field">
+          <label for="dateFrom">From date</label>
+          <input id="dateFrom" type="date" />
+        </div>
+
+        <div class="filter-field">
+          <label for="dateTo">To date</label>
+          <input id="dateTo" type="date" />
+        </div>
+
+        <button id="applyFilters" type="button">Apply filters</button>
+
+        <button id="resetFilters" class="secondary-button" type="button">
+          Reset
+        </button>
+
+        <p id="lastUpdated" class="muted filter-status" aria-live="polite">
+          Loading dashboard data…
+        </p>
+      </section>
+
+      <!-- KPI SUMMARY -->
+      <section class="kpi-grid" aria-label="Dashboard summary">
+        <article class="panel kpi">
+          <p>Total reported cases</p>
+          <strong id="totalCases">—</strong>
+          <span>Aggregated Gold data</span>
+        </article>
+
+        <article class="panel kpi">
+          <p>Districts represented</p>
+          <strong id="districtCount">—</strong>
+          <span>Districts in current view</span>
+        </article>
+
+        <article class="panel kpi">
+          <p>Alert weeks</p>
+          <strong id="alertCount">—</strong>
+          <span>Detector output in current view</span>
+        </article>
+
+        <article class="panel kpi">
+          <p>Estimated beds needed</p>
+          <strong id="bedCount">—</strong>
+          <span>Model-based estimate</span>
+        </article>
+      </section>
+
+      <!-- DATA QUALITY AND PRIVACY STATUS -->
+      <section class="two-column">
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>Data quality report</h2>
+              <p>Latest pipeline load: rows, validation and quarantine</p>
+            </div>
+            <span id="qualityStatus" class="section-tag">Awaiting data</span>
+          </div>
+
+          <div class="quality-grid">
+            <div class="mini-metric">
+              <span>Input rows</span>
+              <strong id="qualityInputRows">—</strong>
+            </div>
+
+            <div class="mini-metric">
+              <span>Output rows</span>
+              <strong id="qualityOutputRows">—</strong>
+            </div>
+
+            <div class="mini-metric">
+              <span>Quarantined</span>
+              <strong id="qualityQuarantined">—</strong>
+            </div>
+
+            <div class="mini-metric">
+              <span>Rule pass rate</span>
+              <strong id="qualityPassRate">—</strong>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Validation rule</th>
+                  <th scope="col">Passed</th>
+                  <th scope="col">Failed</th>
+                  <th scope="col">Pass rate</th>
+                </tr>
+              </thead>
+              <tbody id="qualityRulesTable">
+                <tr>
+                  <td colspan="4">Quality report not loaded.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>Privacy and data lineage</h2>
+              <p>Aggregated output and source-batch traceability</p>
+            </div>
+            <span id="privacyStatus" class="section-tag">Not verified</span>
+          </div>
+
+          <div class="privacy-grid">
+            <div class="mini-metric">
+              <span>Suppressed cells</span>
+              <strong id="suppressedCount">—</strong>
+            </div>
+
+            <div class="mini-metric">
+              <span>Gold batch IDs</span>
+              <strong id="batchCount">—</strong>
+            </div>
+          </div>
+
+          <p id="privacyMessage" class="muted">
+            Waiting for server-provided privacy metadata.
+          </p>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Gold dataset</th>
+                  <th scope="col">Bronze batch IDs</th>
+                  <th scope="col">Load time</th>
+                </tr>
+              </thead>
+              <tbody id="lineageTable">
+                <tr>
+                  <td colspan="3">Lineage information not available.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <!-- COORDINATED VIEW 1 + 2 -->
+      <section class="two-column">
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>District surveillance map</h2>
+              <p>Click a district to filter the dashboard</p>
+            </div>
+            <span class="section-tag">Total reported cases</span>
+          </div>
+
+          <div class="map-toolbar">
+            <button
+              id="clearMapSelection"
+              class="secondary-button"
+              type="button"
+            >
+              Clear map selection
+            </button>
+          </div>
+
+          <div
+            id="districtMap"
+            class="map-container"
+            role="group"
+            aria-label="Interactive Bangladesh district map"
+            aria-describedby="mapMessage"
+          >
+            <p class="empty-state">Loading district boundaries…</p>
+          </div>
+
+          <p id="mapMessage" class="muted" aria-live="polite">
+            Map values are awaiting aggregated API data.
+          </p>
+        </article>
+
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>Weekly cases and forecast</h2>
+              <p>Observed cases and model-generated forecasts</p>
+            </div>
+            <span class="section-tag">Observed + forecast</span>
+          </div>
+
+          <div class="chart-legend" id="forecastLegend">
+            <span><i class="legend-key observed"></i>Observed</span>
+            <span><i class="legend-key forecast"></i>Forecast</span>
+          </div>
+
+          <div
+            id="trendChart"
+            class="chart"
+            role="group"
+            aria-label="Weekly observed and forecast cases"
+          ></div>
+
+          <p id="forecastMessage" class="muted" aria-live="polite">
+            Forecast output not loaded. Forecasts currently carry forward the
+            last observed weather values.
+          </p>
+        </article>
+      </section>
+
+      <!-- COORDINATED VIEW 3 + DISEASE TOTALS -->
+      <section class="two-column">
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>Seasonal disease heatmap</h2>
+              <p>Historical weekly pattern by disease and year</p>
+            </div>
+          </div>
+
+          <div
+            id="seasonalHeatmap"
+            class="chart heatmap-chart"
+            role="group"
+            aria-label="Historical seasonal disease heatmap"
+          >
+            <p class="empty-state">Seasonal data not loaded.</p>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>Cases by disease</h2>
+              <p>Aggregated case totals for the selected filters</p>
+            </div>
+          </div>
+
+          <div
+            id="diseaseChart"
+            class="chart"
+            role="group"
+            aria-label="Cases by disease bar chart"
+          ></div>
+        </article>
+      </section>
+
+      <!-- MULTI-DISEASE TREND AND DISTRICT BREAKDOWN -->
+      <section class="two-column">
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>Case trend by disease</h2>
+              <p>Compare weekly disease patterns</p>
+            </div>
+          </div>
+
+          <div
+            id="mapTrendLegend"
+            class="trend-legend"
+            aria-label="Disease legend"
+          ></div>
+
+          <div
+            id="mapTrendChart"
+            class="chart compact-chart"
+            role="group"
+            aria-label="Multi-disease weekly trend"
+          ></div>
+        </article>
+
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>Disease counts by district</h2>
+              <p id="selectedDistrictTitle">All districts</p>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Disease</th>
+                  <th scope="col">Reported cases</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody id="districtDiseaseTable">
+                <tr>
+                  <td colspan="3">Loading disease counts…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+
+      <!-- EARLY WARNING -->
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <h2>Early-warning priority ranking</h2>
+            <p>Districts ranked by the latest detector output</p>
+          </div>
+          <span class="section-tag">Detector results</span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Rank</th>
+                <th scope="col">District</th>
+                <th scope="col">Disease</th>
+                <th scope="col">Week</th>
+                <th scope="col">Observed</th>
+                <th scope="col">Expected</th>
+                <th scope="col">Signal</th>
+              </tr>
+            </thead>
+            <tbody id="earlyWarningTable">
+              <tr>
+                <td colspan="7">Early-warning ranking not available.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ALERTS AND DETECTOR EVALUATION -->
+      <section class="two-column">
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>Recent detector alerts</h2>
+              <p>Latest available alert records</p>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Week</th>
+                  <th scope="col">District</th>
+                  <th scope="col">Disease</th>
+                  <th scope="col">Cases</th>
+                </tr>
+              </thead>
+              <tbody id="alertsTable">
+                <tr>
+                  <td colspan="4">Loading alerts…</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>Outbreak detector evaluation</h2>
+              <p>Reference events compared with detected events</p>
+            </div>
+          </div>
+
+          <div id="evaluationSummary" class="evaluation-summary">
+            Loading evaluation…
+          </div>
+
+          <div id="detectorComparison" class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">Detector</th>
+                  <th scope="col">Sensitivity</th>
+                  <th scope="col">False alerts / district-year</th>
+                  <th scope="col">Median detection delay</th>
+                </tr>
+              </thead>
+              <tbody id="detectorComparisonTable">
+                <tr>
+                  <td colspan="4">Detector comparison not available.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div
+            id="thresholdCurve"
+            class="chart compact-chart"
+            role="group"
+            aria-label="Detector threshold trade-off curve"
+          ></div>
+        </article>
+      </section>
+
+      <!-- RESOURCE DEMAND -->
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <h2>Resource demand planning</h2>
+            <p>Forecast-based demand estimates and planning assumptions</p>
+          </div>
+        </div>
+
+        <div class="kpi-grid resource-kpis">
+          <article class="mini-metric">
+            <span>Beds required</span>
+            <strong id="resourceBeds">—</strong>
+          </article>
+
+          <article class="mini-metric">
+            <span>IV saline units</span>
+            <strong id="resourceSaline">—</strong>
+          </article>
+
+          <article class="mini-metric">
+            <span>ORS units</span>
+            <strong id="resourceTestKits">—</strong>
+          </article>
+
+          <article class="mini-metric">
+            <span>Demand uncertainty</span>
+            <strong id="resourceUncertainty">Not available</strong>
+          </article>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">District</th>
+                <th scope="col">Beds needed</th>
+                <th scope="col">Saline</th>
+                <th scope="col">ORS units</th>
+                <th scope="col">Lower estimate</th>
+                <th scope="col">Upper estimate</th>
+              </tr>
+            </thead>
+            <tbody id="demandTable">
+              <tr>
+                <td colspan="6">Demand forecast not available.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p id="resourceAssumptions" class="muted">
+          Resource estimates use model-based planning assumptions. Uncertainty
+          bounds are not currently supplied by the forecast output.
+        </p>
+      </section>
+
+      <!-- COORDINATED VIEW 4: ALLOCATION COMPARISON -->
+      <section class="two-column">
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>Resource allocation comparison</h2>
+              <p>Optimized allocation and unmet demand</p>
+            </div>
+          </div>
+
+          <div
+            id="allocationChart"
+            class="chart"
+            role="group"
+            aria-label="Resource allocation and unmet demand comparison"
+          ></div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th scope="col">District</th>
+                  <th scope="col">Optimized</th>
+                  <th scope="col">Baseline</th>
+                  <th scope="col">Unmet demand</th>
+                </tr>
+              </thead>
+              <tbody id="allocationTable">
+                <tr>
+                  <td colspan="4">Allocation comparison not available.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p class="muted">
+            A population-proportional baseline is not currently available.
+          </p>
+        </article>
+
+        <article class="panel">
+          <div class="section-heading">
+            <div>
+              <h2>Budget and equity scenario</h2>
+              <p>Run a weekly bed-allocation optimization using forecast demand</p>
+            </div>
+          </div>
+
+          <div class="scenario-control">
+            <label for="budgetSlider">Weekly bed capacity</label>
+            <output id="budgetValue" for="budgetSlider">30 beds</output>
+            <input
+              id="budgetSlider"
+              type="range"
+              min="1"
+              max="100"
+              step="1"
+              value="30"
+            />
+          </div>
+
+          <div class="scenario-control">
+            <label for="equitySlider">Minimum equity coverage</label>
+            <output id="equityValue" for="equitySlider">50%</output>
+            <input
+              id="equitySlider"
+              type="range"
+              min="0"
+              max="100"
+              step="5"
+              value="50"
+            />
+          </div>
+
+          <div class="scenario-control">
+            <label for="thresholdSlider">Alert threshold</label>
+            <output id="thresholdValue" for="thresholdSlider">2.0</output>
+            <select id="thresholdSlider">
+              <option value="1.0">1.0</option>
+              <option value="1.5">1.5</option>
+              <option value="2.0" selected>2.0</option>
+              <option value="2.5">2.5</option>
+              <option value="3.0">3.0</option>
+              <option value="4.0">4.0</option>
+            </select>
+          </div>
+
+          <div class="scenario-control">
+            <label for="detectorSelect">Outbreak detection method</label>
+            <select id="detectorSelect">
+              <option value="Rolling_Z_Score" selected>Rolling Z-Score</option>
+              <option value="EARS_C2">EARS C2</option>
+            </select>
+          </div>
+
+          <button id="runScenario" type="button">Run scenario</button>
+
+          <p id="scenarioMessage" class="muted" aria-live="polite">
+            Adjust the controls and run the scenario to calculate weekly allocations.
+          </p>
+
+          <div id="scenarioResults" aria-live="polite"></div>
+
+          <p class="muted">
+            Planning simulation only. Equity is calculated among districts
+            with recorded demand in each week. Missing district-week records
+            are not imputed; results do not establish actual hospital capacity
+            or complete national coverage.
+          </p>
+
+          <div
+            id="equityCurve"
+            class="chart compact-chart"
+            role="group"
+            aria-label="Allocation efficiency and equity comparison"
+          ></div>
+        </article>
+      </section>
+
+      <!-- PREPAREDNESS CALENDAR -->
+      <section class="panel">
+        <div class="section-heading">
+          <div>
+            <h2>Seasonal preparedness calendar</h2>
+            <p>
+              Historical seasonal risk patterns and preparedness recommendations
+            </p>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Period</th>
+                <th scope="col">Division</th>
+                <th scope="col">Disease group</th>
+                <th scope="col">Expected risk</th>
+                <th scope="col">Recommended action</th>
+                <th scope="col">Supplies</th>
+              </tr>
+            </thead>
+            <tbody id="preparednessTable">
+              <tr>
+                <td colspan="6">Preparedness calendar not available.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <footer>
+        EpiScope · Educational project · Synthetic data · Not for clinical use
+      </footer>
+    </main>
+
+    <div id="tooltip" class="tooltip" role="status" aria-live="polite"></div>
+  </body>
+</html>
