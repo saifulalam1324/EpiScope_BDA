@@ -368,7 +368,6 @@ The EpiScope dashboard connects analytical outputs to an interactive web interfa
   <img src="docs/Dashboard_2.png" alt="EpiScope Dashboard 2" width="48%">
 </p>
 
-<sub>Place a real dashboard screenshot at `docs/dashboard.png`, or remove this preview section if no screenshot is available.</sub>
 
 ---
 
@@ -556,5 +555,3 @@ Data-quality percentages should be calculated from verified input, accepted, and
 | 17:28 | What-if Panel and Usability Evaluation |
 | 18:54 | Recommendations, Ethics and Conclusion |
 | 20:09 | Thank You |
-
-<sub>Replace the placeholder timestamps with the actual video chapter times.</sub>
