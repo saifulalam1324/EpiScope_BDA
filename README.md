@@ -364,7 +364,8 @@ The EpiScope dashboard connects analytical outputs to an interactive web interfa
 ### Dashboard preview
 
 <p align="center">
-  <img src="docs/dashboard.png" alt="EpiScope Dashboard Preview" width="900">
+  <img src="docs/Dashboard_1.png" alt="EpiScope Dashboard 1" width="48%">
+  <img src="docs/Dashboard_2.png" alt="EpiScope Dashboard 2" width="48%">
 </p>
 
 <sub>Place a real dashboard screenshot at `docs/dashboard.png`, or remove this preview section if no screenshot is available.</sub>
