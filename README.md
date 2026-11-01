@@ -534,35 +534,27 @@ Data-quality percentages should be calculated from verified input, accepted, and
 
 ## 🎥 Video Presentation
 
-**Project demonstration:** Add your final presentation video link here.
+[▶ Watch the EpiScope Presentation]([YOUR_VIDEO_LINK_HERE](https://drive.google.com/drive/folders/1JrJz44JdE4_LI_uMwG3jz199aDlA9G6c?usp=sharing))
 
-[▶ Watch the EpiScope Presentation](YOUR_VIDEO_LINK_HERE)
-
-### Video Chapters
+## 📌 Video Contents
 
 | Timestamp | Topic |
-|---|---|
-| `00:00` | Project introduction |
-| `00:00` | Problem statement and objectives |
-| `00:00` | System architecture |
-| `00:00` | Data engineering pipeline |
-| `00:00` | Outbreak detection and evaluation |
-| `00:00` | Forecasting and resource planning |
-| `00:00` | Dashboard demonstration |
-| `00:00` | Conclusion |
+|:---:|---|
+| 00:00 | Introduction |
+| 00:43 | Problem, Stakeholders and Conflicts |
+| 01:34 | System Architecture |
+| 02:38 | Data Generation and Bronze Ingestion |
+| 04:13 | Silver Layer: Data Quality and Privacy |
+| 05:34 | Gold Layer and Pipeline Orchestration |
+| 06:50 | Analytics Workflow |
+| 07:43 | Outbreak Detection |
+| 08:23 | Detection Evaluation |
+| 09:30 | Forecasting and Backtesting |
+| 10:45 | SEIR, Resource Demand and Allocation |
+| 12:40 | Serving Layer and Privacy |
+| 14:28 | D3.js Dashboard |
+| 17:28 | What-if Panel and Usability Evaluation |
+| 18:54 | Recommendations, Ethics and Conclusion |
+| 20:09 | Thank You |
 
 <sub>Replace the placeholder timestamps with the actual video chapter times.</sub>
-
----
-
-## 📜 License
-
-Add the license selected for this project, such as MIT, if the team has agreed to publish the repository under that license.
-
----
-
-<p align="center">
-  <strong>EpiScope — Turning public health data into actionable surveillance insights.</strong>
-  <br>
-  Made as an academic Big Data Analytics project.
-</p>
