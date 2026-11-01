@@ -11,7 +11,7 @@ import pandas as pd
 import pulp
 
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 
 INPUT_FILE = ROOT / "analytics" / "forecast" / "resource_demand_by_district.csv"
 

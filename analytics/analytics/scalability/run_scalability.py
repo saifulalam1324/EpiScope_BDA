@@ -25,7 +25,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 
 OUTPUT_DIR = ROOT / "data" / "reports" / "scalability"
 TEMP_DIR = OUTPUT_DIR / "benchmark_temp"

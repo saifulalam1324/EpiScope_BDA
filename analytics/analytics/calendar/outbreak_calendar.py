@@ -14,7 +14,7 @@ import pandas as pd
 # CONFIGURATION
 # ---------------------------------------------------------
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 
 INPUT_FILES = [
     ROOT / "analytics" / "detection" / "ears_alerts.csv",

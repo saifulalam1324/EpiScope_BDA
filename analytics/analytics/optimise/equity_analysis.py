@@ -14,7 +14,7 @@ import pandas as pd
 # PATHS AND CONFIGURATION
 # ---------------------------------------------------------
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 
 INPUT_FILE = ROOT / "analytics" / "optimise" / "allocation_results.csv"
 OUTPUT_DIR = ROOT / "analytics" / "optimise"

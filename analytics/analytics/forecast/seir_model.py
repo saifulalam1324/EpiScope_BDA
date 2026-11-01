@@ -15,7 +15,7 @@ from scipy.integrate import solve_ivp
 # CONFIGURATION
 # =========================================================
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 
 GOLD_DIR = ROOT / "data" / "lake" / "gold" / "weekly_district_disease"
 

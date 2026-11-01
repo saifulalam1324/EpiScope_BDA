@@ -9,7 +9,7 @@ import pandas as pd
 # PATHS
 # ============================================================
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 
 INPUT = ROOT / "data/lake/gold/weekly_district_disease"
 OUTPUT = ROOT / "analytics/detection/ears_alerts.csv"

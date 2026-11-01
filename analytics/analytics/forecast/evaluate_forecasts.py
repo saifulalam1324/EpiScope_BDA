@@ -16,7 +16,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 # Paths and configuration
 # ---------------------------------------------------------
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 
 GOLD_PATH = ROOT / "data" / "lake" / "gold" / "weekly_district_disease"
 WEATHER_PATH = ROOT / "data" / "weather" / "weather_weekly.csv"

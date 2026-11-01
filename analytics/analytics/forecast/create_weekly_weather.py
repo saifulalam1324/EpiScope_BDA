@@ -6,7 +6,7 @@ import pandas as pd
 # PATHS
 # ------------------------------------------------------------
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 
 DAILY_INPUT = ROOT / "data/weather/weather_daily.csv"
 GOLD_INPUT = ROOT / "data/lake/gold/weekly_district_disease"
