@@ -1,0 +1,6 @@
+disease,alert_events,affected_districts,total_reported_cases,high_alerts,first_alert,last_alert
+dengue,203,62,575,30,2021-01-25,2025-12-15
+other,138,59,339,7,2021-01-25,2025-12-22
+diarrhoea,137,54,340,11,2021-01-25,2025-12-15
+influenza,96,52,242,9,2021-01-25,2025-12-15
+malaria,56,39,125,3,2021-01-25,2025-12-08

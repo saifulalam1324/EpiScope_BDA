@@ -1,0 +1,13 @@
+metric,value
+total_demand,669.0
+total_allocated,669.0
+total_unmet,0.0
+overall_coverage_rate,1.0
+district_demand_gini,0.14361453662182355
+district_allocation_gini,0.14361453662182355
+gini_difference,0.0
+districts,64.0
+forecast_weeks,32.0
+weeks_with_all_64_districts,0.0
+weeks_with_incomplete_district_coverage,32.0
+districts_with_incomplete_week_coverage,64.0
