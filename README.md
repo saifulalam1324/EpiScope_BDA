@@ -534,7 +534,7 @@ Data-quality percentages should be calculated from verified input, accepted, and
 
 ## 🎥 Video Presentation
 
-[▶ Watch the EpiScope Presentation]([https://drive.google.com/drive/folders/1JrJz44JdE4_LI_uMwG3jz199aDlA9G6c?usp=sharing])
+[▶ Watch the EpiScope Presentation](https://drive.google.com/drive/folders/1JrJz44JdE4_LI_uMwG3jz199aDlA9G6c?usp=sharing)
 
 ## 📌 Video Contents
 
