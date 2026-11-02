@@ -41,6 +41,42 @@ const state = {
 
 const tooltip = d3.select("#tooltip");
 
+function showTooltip(event, html) {
+  if (tooltip.empty()) {
+    console.error("Tooltip element #tooltip not found.");
+    return;
+  }
+
+  tooltip.html(html).style("display", "block");
+
+  positionTooltip(event);
+}
+
+function positionTooltip(event) {
+  if (tooltip.empty()) return;
+
+  const tooltipNode = tooltip.node();
+  const rect = tooltipNode.getBoundingClientRect();
+
+  const left = Math.max(
+    8,
+    Math.min(event.clientX + 12, window.innerWidth - rect.width - 8),
+  );
+
+  const top = Math.max(
+    8,
+    Math.min(event.clientY + 12, window.innerHeight - rect.height - 8),
+  );
+
+  tooltip.style("left", `${left}px`).style("top", `${top}px`);
+}
+
+function hideTooltip() {
+  if (tooltip.empty()) return;
+
+  tooltip.style("display", "none").html("");
+}
+
 /* -------------------- GENERAL HELPERS -------------------- */
 
 function formatNumber(value) {
@@ -137,7 +173,7 @@ function showEmpty(id, message) {
   node.appendChild(div);
 }
 
-function showTooltip(event, html) {
+function positionTooltip(event) {
   if (tooltip.empty()) return;
 
   const left = Math.max(
@@ -150,11 +186,7 @@ function showTooltip(event, html) {
     Math.min(event.clientY + 12, window.innerHeight - 120),
   );
 
-  tooltip
-    .style("display", "block")
-    .style("left", `${left}px`)
-    .style("top", `${top}px`)
-    .html(html);
+  tooltip.style("left", `${left}px`).style("top", `${top}px`);
 }
 
 function hideTooltip() {
@@ -1102,9 +1134,7 @@ function renderMap(geojson) {
 
   const path = d3.geoPath().projection(projection);
 
-  // Blue colour scale:
-  // Fewer cases = light blue.
-  // More cases = dark blue.
+  // Blue colour scale.
   const caseValues = mapFeatures
     .map(getFeatureCases)
     .filter((value) => value !== null);
@@ -1137,21 +1167,36 @@ function renderMap(geojson) {
     .attr("stroke-width", 1)
     .attr("stroke-linejoin", "round")
     .style("cursor", "pointer")
-    .on("mousemove", (event, feature) => {
-      const cases = getFeatureCases(feature);
-      const name = getFeatureName(feature);
-      const id = getFeatureDistrictId(feature);
 
-      showTooltip(
-        event,
+    // Display information as soon as the pointer enters a district.
+    .on("mouseenter", (event, feature) => {
+      const cases = getFeatureCases(feature);
+      const name = getFeatureName(feature) || "Unknown district";
+      const id = String(getFeatureDistrictId(feature) || "Unmapped");
+
+      const html =
         `<strong>${escapeHTML(name)}</strong><br>` +
-          `District ID: ${escapeHTML(id || "Unmapped")}<br>` +
-          `Cases: ${
-            cases === null ? "Suppressed or unavailable" : formatNumber(cases)
-          }`,
-      );
+        `District ID: ${escapeHTML(id)}<br>` +
+        `Cases: ${
+          cases === null ? "Suppressed or unavailable" : formatNumber(cases)
+        }`;
+
+      tooltip.attr("data-district-id", id);
+      showTooltip(event, html);
     })
-    .on("mouseleave", hideTooltip)
+
+    // Keep the tooltip beside the pointer.
+    .on("mousemove", (event) => {
+      positionTooltip(event);
+    })
+
+    // Hide the tooltip when the pointer leaves the district.
+    .on("mouseleave", () => {
+      hideTooltip();
+      tooltip.attr("data-district-id", null);
+    })
+
+    // Clicking is only for selecting a district.
     .on("click", (_, feature) => {
       selectMapDistrict(feature);
     });
@@ -1173,6 +1218,7 @@ function renderMap(geojson) {
     })
     .attr("text-anchor", "middle")
     .attr("dominant-baseline", "central")
+    .style("pointer-events", "none")
     .text((feature) => {
       const id = getFeatureDistrictId(feature);
 
@@ -1252,7 +1298,7 @@ function renderMap(geojson) {
     .attr("fill", "#526579")
     .text(formatNumber(maxCases));
 
-  // Unavailable-data key below the gradient.
+  // Unavailable-data key.
   legend
     .append("rect")
     .attr("x", legendX)
@@ -1316,7 +1362,7 @@ function updateMapSelection() {
 async function loadMap() {
   try {
     if (state.mapData) {
-      renderMap(state.mapData);
+      updateMapSelection();
       return;
     }
 
