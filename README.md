@@ -155,58 +155,208 @@ flowchart TD
 ## 📁 Project Structure
 
 ```text
-EpiScope/
+```text
+EpiScope_BDA/
 │
 ├── analytics/
+│   ├── analytics/
+│   │   ├── calendar/
+│   │   │   ├── outbreak_calendar.py
+│   │   │   ├── preparedness_calendar.py
+│   │   │   ├── outbreak_calendar.csv
+│   │   │   ├── outbreak_by_disease.csv
+│   │   │   ├── outbreak_by_district.csv
+│   │   │   ├── outbreak_monthly_summary.csv
+│   │   │   ├── outbreak_weekly_summary.csv
+│   │   │   └── preparedness_calendar.csv
+│   │   │
+│   │   ├── detection/
+│   │   │   ├── ears_alerts.py
+│   │   │   ├── ears_c2.py
+│   │   │   ├── evaluate_detection.py
+│   │   │   ├── alert_evaluation.csv
+│   │   │   ├── ears_alerts.csv
+│   │   │   ├── ears_c2_alerts.csv
+│   │   │   ├── evaluation_metrics.csv
+│   │   │   ├── evaluation_results.csv
+│   │   │   ├── false_alerts_by_district_year.csv
+│   │   │   └── threshold_tradeoff.csv
+│   │   │
+│   │   ├── forecast/
+│   │   │   ├── create_weekly_weather.py
+│   │   │   ├── evaluate_forecasts.py
+│   │   │   ├── forecast_cases.py
+│   │   │   ├── resource_demand.py
+│   │   │   ├── seir_model.py
+│   │   │   ├── backtest_by_disease.csv
+│   │   │   ├── backtest_by_district.csv
+│   │   │   ├── backtest_details.csv
+│   │   │   ├── backtest_summary.csv
+│   │   │   ├── forecasts.csv
+│   │   │   ├── resource_demand.csv
+│   │   │   ├── resource_demand_by_district.csv
+│   │   │   ├── seir_simulation.csv
+│   │   │   └── seir_summary.csv
+│   │   │
+│   │   ├── optimise/
+│   │   │   ├── allocation.py
+│   │   │   ├── equity_analysis.py
+│   │   │   ├── scenario_analysis.py
+│   │   │   ├── allocation_results.csv
+│   │   │   ├── equity_by_district.csv
+│   │   │   ├── equity_by_week.csv
+│   │   │   ├── equity_summary.csv
+│   │   │   ├── lorenz_curve.csv
+│   │   │   ├── scenario_allocation_results.csv
+│   │   │   └── scenario_summary.csv
+│   │   │
+│   │   └── scalability/
+│   │       └── run_scalability.py
+│   │
 │   ├── calendar/
-│   │   ├── outbreak_calendar.py
-│   │   └── preparedness_calendar.py
+│   │   └── preparedness_calendar.csv
 │   │
 │   ├── detection/
-│   │   ├── ears_alerts.py
-│   │   ├── ears_c2.py
-│   │   └── evaluate_detection.py
+│   │   ├── alert_evaluation.csv
+│   │   ├── ears_alerts.csv
+│   │   ├── ears_c2_alerts.csv
+│   │   ├── evaluation_metrics.csv
+│   │   ├── evaluation_results.csv
+│   │   ├── false_alerts_by_district_year.csv
+│   │   └── threshold_tradeoff.csv
 │   │
 │   ├── forecast/
-│   │   ├── forecast_cases.py
-│   │   ├── resource_demand.py
-│   │   ├── seir_model.py
-│   │   └── evaluate_forecasts.py
+│   │   ├── forecasts.csv
+│   │   ├── resource_demand.csv
+│   │   └── resource_demand_by_district.csv
 │   │
-│   ├── optimise/
-│   │   ├── allocation.py
-│   │   ├── equity_analysis.py
-│   │   └── scenario_analysis.py
-│   │
-│   └── scalability/
+│   └── optimise/
+│       ├── allocation_results.csv
+│       ├── equity_by_district.csv
+│       ├── equity_by_week.csv
+│       ├── equity_summary.csv
+│       ├── lorenz_curve.csv
+│       ├── scenario_allocation_results.csv
+│       └── scenario_summary.csv
 │
 ├── api/
-│   └── main.py
+│   ├── main.py
+│   └── requirements-dashboard.txt
 │
 ├── dashboard/
 │   ├── app.js
 │   ├── index.html
-│   └── d3.v7.min.js
+│   └── styles.css
 │
 ├── data/
-│   ├── raw/
 │   ├── lake/
 │   │   ├── bronze/
+│   │   │   └── encounters/
+│   │   │
 │   │   ├── silver/
+│   │   │   ├── encounters/
+│   │   │   └── encounters_named/
+│   │   │
 │   │   └── gold/
+│   │       ├── data_quality/
+│   │       └── weekly_district_disease/
+│   │           ├── year=2020/
+│   │           ├── year=2021/
+│   │           ├── year=2022/
+│   │           ├── year=2023/
+│   │           ├── year=2024/
+│   │           └── year=2025/
+│   │
 │   ├── quarantine/
+│   │   └── encounters/
+│   │
+│   ├── raw/
+│   │   └── generated/
+│   │       ├── encounters.csv
+│   │       ├── facilities.csv
+│   │       └── ground_truth_outbreaks.csv
+│   │
 │   ├── reference/
+│   │   ├── create_division_mapping.py
+│   │   ├── districts.geojson
+│   │   ├── district_division_mapping.csv
+│   │   └── district_mapping.csv
+│   │
 │   ├── reports/
+│   │   ├── bronze_ingestion.json
+│   │   ├── district_mapping.json
+│   │   ├── silver_quality.json
+│   │   ├── bronze_ingestion/
+│   │   ├── full_extraction/
+│   │   │   ├── bronze_encounters/
+│   │   │   ├── silver_encounters/
+│   │   │   ├── silver_encounters_named/
+│   │   │   ├── bronze_encounters_null_counts.csv
+│   │   │   ├── bronze_encounters_schema.json
+│   │   │   ├── existing_csv_inventory.csv
+│   │   │   ├── extraction_errors.csv
+│   │   │   ├── extraction_summary.json
+│   │   │   ├── parquet_layer_inventory.csv
+│   │   │   ├── silver_encounters_named_null_counts.csv
+│   │   │   ├── silver_encounters_named_schema.json
+│   │   │   ├── silver_encounters_null_counts.csv
+│   │   │   └── silver_encounters_schema.json
+│   │   │
+│   │   ├── gold_disease_totals/
+│   │   ├── report_metrics/
+│   │   │   ├── all_csv_file_inventory.csv
+│   │   │   ├── all_report_metrics.csv
+│   │   │   └── extraction_errors.csv
+│   │   │
+│   │   └── scalability/
+│   │       ├── scalability_report.json
+│   │       ├── scalability_results.csv
+│   │       └── scalability_summary.csv
+│   │
 │   └── weather/
+│       ├── weather_daily.csv
+│       ├── weather_failures.csv
+│       └── weather_weekly.csv
+│
+├── docs/
+│   ├── Dashboard_1.png
+│   ├── Dashboard_2.png
+│   └── System_arcitecture.png
+│
+├── generator/
+│   ├── create_district_mapping.py
+│   ├── download_boundaries.py
+│   ├── download_weather.py
+│   └── generate_data.py
+│
+├── logs/
+│   └── pipeline_runs/
+│       ├── pipeline_20261031T100554_201700Z.log
+│       ├── pipeline_20261031T101331_089545Z.log
+│       └── pipeline_20261101T054026_328790Z.log
 │
 ├── pipeline/
 │   ├── bronze/
+│   │   ├── ingest.py
+│   │   └── spark_check.py
+│   │
 │   ├── silver/
-│   └── gold/
+│   │   ├── add_district_names.py
+│   │   └── clean.py
+│   │
+│   ├── gold/
+│   │   └── aggregate.py
+│   │
+│   └── run_pipeline.py
 │
 ├── serving/
-├── requirements.txt
-└── README.md
+│   ├── __init__.py
+│   └── data_access.py
+│
+└── tests/
+    ├── conftest.py
+    └── test_data_quality.py
+```
 ```
 
 <sub>Note: This is a representative structure. Directory names and files may differ between project versions. Confirm the actual repository before publishing.</sub>
