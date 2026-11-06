@@ -153,6 +153,8 @@ flowchart TD
 ---
 
 ## 📁 Project Structure
+
+```text
 EpiScope_BDA/
 │
 ├── analytics/
@@ -353,7 +355,7 @@ EpiScope_BDA/
 └── tests/
     ├── conftest.py
     └── test_data_quality.py
-  
+```
 ---
 
 ## ✨ Key Features
